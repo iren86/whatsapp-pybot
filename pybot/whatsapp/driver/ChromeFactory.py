@@ -8,10 +8,10 @@ from pybot.whatsapp.driver.ExtendedWebDriver import ExtendedWebDriver
 from pybot.whatsapp.driver.WebDriverErrorHandler import WebDriverErrorHandler
 
 # Request default configuration
-PAGE_LOAD_TIMEOUT_IN_SEC = 7
-IMPLICITLY_WAIT_IN_SEC = 7
-SCRIPT_TIMEOUT_IN_SEC = 7
-REQUEST_TIMEOUT_IN_SEC = 14
+PAGE_LOAD_TIMEOUT_IN_SEC = 5
+IMPLICITLY_WAIT_IN_SEC = 5
+SCRIPT_TIMEOUT_IN_SEC = 5
+REQUEST_TIMEOUT_IN_SEC = 10
 
 
 class ChromeFactory:

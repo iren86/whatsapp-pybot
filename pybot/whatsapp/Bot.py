@@ -54,18 +54,19 @@ def process_input(users, message):
         for user in users:
             if app_page.open_chat_with_user(user):
                 # send message only if chat opened with the user
-                logger.info("Send next message to the user %s\n%s\n" % (user, message))
+                logger.info("Send next message to the user '%s'\n%s\n" % (user, message))
                 app_page.send_message(message)
-                logger.info("Ok. Message sent to the user %s" % user)
+                logger.info("Ok. Message sent to the user '%s'" % user)
                 processed_users.append(user)
             else:
-                logger.warning("User %s not found in contact list" % user)
+                logger.warning("User '%s' not found in contact list" % user)
                 skipped_users.append(user)
                 app_page.close_search_drawer()
 
         logger.info(
             "Logout from the app. Users processed: %s, skipped: %s" % (len(processed_users), len(skipped_users)))
         app_page.logout()
+        logger.info("Logout completed")
 
     finally:
         logger.info("Processed users:\n%s" % json.dumps(processed_users))

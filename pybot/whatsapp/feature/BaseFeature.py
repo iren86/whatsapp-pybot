@@ -9,8 +9,8 @@ from pybot.whatsapp.driver import ChromeFactory
 from pybot.whatsapp.util.AppUtil import new_pagesource_path
 from pybot.whatsapp.util.AppUtil import new_screenshot_path
 
-RANDOM_SLEEP_BETWEEN_REQUESTS_START = 1.0
-RANDOM_SLEEP_BETWEEN_REQUESTS_END = 3.0
+RANDOM_SLEEP_BETWEEN_REQUESTS_START = 0.5
+RANDOM_SLEEP_BETWEEN_REQUESTS_END = 2.0
 
 RANDOM_SLEEP_BETWEEN_SEND_KEYS_START = 0.05
 RANDOM_SLEEP_BETWEEN_SEND_KEYS_END = 0.15

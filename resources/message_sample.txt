@@ -1,2 +1,11 @@
 Hey!
-How are you doing?
+A concerned student comes to talk with his teacher.
+"I'm having trouble with my comprehension" he says. "There's just so much information, and I can't keep it all in my memory all at once"
+The teacher thinks for a little while and says, "perhaps you should try a generator expression".
+-----
+A constant variable enters in a bar, and says to the barman.
+- I want your best Whisky and I wanted right now!
+The barman replies:
+- I don't know who do you think you are pal, but we treat everybody the same.
+So, How it is called the bar?
+... Python
