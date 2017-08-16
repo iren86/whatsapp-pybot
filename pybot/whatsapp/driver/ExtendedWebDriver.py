@@ -25,6 +25,8 @@ class ExtendedWebDriver(object):
     A wrapper around an arbitrary WebDriver instance which supports firing events
     """
 
+    logger = get_logger()
+
     def __init__(self, driver, event_listener):
         """
         Creates a new instance of the ExtendedWebDriver
@@ -72,7 +74,7 @@ class ExtendedWebDriver(object):
             except Exception as e:
                 # If trying n time and still error?
                 if count == NUMBER_OF_RETRIES:
-                    get_logger().error(
+                    self.logger.error(
                         "Get url method failed after number of retries: %s, "
                         "with exception:" % str(count), e
                     )
@@ -160,11 +162,11 @@ class ExtendedWebDriver(object):
             url = self._driver.current_url
             log_message = "%s %s" % (url, file_path)
 
-            get_logger().error(log_message)
+            self.logger.error(log_message)
             self._driver.save_screenshot(file_path)
         except Exception as e:
             url = self._driver.current_url
-            get_logger().error(
+            self.logger.error(
                 "Can't make a screenshot. "
                 "Probably because alert window in focus: %s. "
                 "Type error: %s. "
@@ -178,13 +180,13 @@ class ExtendedWebDriver(object):
 
             log_message = "%s %s" % (url, file_path)
 
-            get_logger().error(log_message)
+            self.logger.error(log_message)
             html = self._driver.page_source
             with open(file_path, "w") as f:
                 f.write(html.encode("utf-8"))
         except Exception as e:
             url = self._driver.current_url
-            get_logger().error(
+            self.logger.error(
                 "Can't save page source. "
                 "Probably because alert window in focus: %s. "
                 "Type error: %s. "

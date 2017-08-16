@@ -29,7 +29,8 @@ def wait_for_result(method, timeout, wait_msg=None):
             break
 
         if wait_msg and count % POST_WAIT_MSG_EVERY_ITERATION == 0:
-            get_logger().warning(wait_msg)
+            logger.warning(
+                "%s\n... Stop waiting in %s sec. ..." % (wait_msg, int(end_time - time.time())))
 
         count += 1
 
@@ -54,7 +55,8 @@ def wait_for_result_is_none(method, timeout, wait_msg=None):
             break
 
         if wait_msg and count % POST_WAIT_MSG_EVERY_ITERATION == 0:
-            get_logger().warning(wait_msg)
+            logger.warning(
+                "%s\n... Stop waiting in %s sec. ..." % (wait_msg, int(end_time - time.time())))
 
         count += 1
 
@@ -79,7 +81,8 @@ def wait_for_result_is_false(method, timeout, wait_msg=None):
             break
 
         if wait_msg and count % POST_WAIT_MSG_EVERY_ITERATION == 0:
-            get_logger().warning(wait_msg)
+            logger.warning(
+                "%s\n... Stop waiting in %s sec. ..." % (wait_msg, int(end_time - time.time())))
 
         count += 1
 

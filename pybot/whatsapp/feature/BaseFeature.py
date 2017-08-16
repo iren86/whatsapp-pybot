@@ -5,10 +5,9 @@ from time import sleep
 
 from selenium.common.exceptions import NoSuchElementException
 
+from pybot.whatsapp.driver import ChromeFactory
 from pybot.whatsapp.util.AppUtil import new_pagesource_path
 from pybot.whatsapp.util.AppUtil import new_screenshot_path
-
-REQUEST_TIMEOUT_IN_SEC = 600
 
 RANDOM_SLEEP_BETWEEN_REQUESTS_START = 1.0
 RANDOM_SLEEP_BETWEEN_REQUESTS_END = 3.0
@@ -57,6 +56,7 @@ class BaseFeature(object):
         try:
             self.driver.find_element(locator[0], locator[1])
         except NoSuchElementException:
+            # driver.find_element raise only NoSuchElementException
             return False
         return True
 
@@ -79,4 +79,4 @@ class BaseFeature(object):
 
     def get_request_timeout_in_sec(self):
 
-        return REQUEST_TIMEOUT_IN_SEC
+        return ChromeFactory.REQUEST_TIMEOUT_IN_SEC

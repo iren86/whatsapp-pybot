@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import sys
 
@@ -34,6 +35,9 @@ def process_input(users, message):
     assert isinstance(users, list), "users must be a list"
     assert message, "message must be provided"
 
+    processed_users = []
+    skipped_users = []
+
     driver = None
     try:
         driver = ChromeFactory.create_chrome()
@@ -46,13 +50,27 @@ def process_input(users, message):
 
         app_page.is_app_page()
 
+        logger.info("Start sending message to %s user(s)" % len(users))
         for user in users:
-            app_page.open_chat_with_user(user)
-            app_page.send_message(message)
+            if app_page.open_chat_with_user(user):
+                # send message only if chat opened with the user
+                logger.info("Send next message to the user %s\n%s\n" % (user, message))
+                app_page.send_message(message)
+                logger.info("Ok. Message sent to the user %s" % user)
+                processed_users.append(user)
+            else:
+                logger.warning("User %s not found in contact list" % user)
+                skipped_users.append(user)
+                app_page.close_search_drawer()
 
+        logger.info(
+            "Logout from the app. Users processed: %s, skipped: %s" % (len(processed_users), len(skipped_users)))
         app_page.logout()
 
     finally:
+        logger.info("Processed users:\n%s" % json.dumps(processed_users))
+        logger.info("Skipped users:\n%s" % json.dumps(skipped_users))
+
         if driver:
             driver.quit()
 

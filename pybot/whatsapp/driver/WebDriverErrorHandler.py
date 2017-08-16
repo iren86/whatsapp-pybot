@@ -8,6 +8,8 @@ from pybot.whatsapp.util.AppUtil import new_screenshot_path
 
 
 class WebDriverErrorHandler(AbstractEventListener):
+    logger = get_logger()
+
     def on_exception(self, exception, driver):
         screenshot_path = new_screenshot_path()
         pagesource_path = new_pagesource_path()
@@ -19,11 +21,11 @@ class WebDriverErrorHandler(AbstractEventListener):
 
             error_message = "%s %s:\n%s" % (url, screenshot_path, str(exception))
 
-            get_logger().exception(error_message)
+            self.logger.exception(error_message)
             driver.make_screenshot(screenshot_path)
             driver.save_page_source(pagesource_path)
         except Exception as e:
-            get_logger().error(
+            self.logger.error(
                 "Can't make a screenshot or can't get a page source. "
                 "Probably because alert window in focus: %s" % str(e)
             )
